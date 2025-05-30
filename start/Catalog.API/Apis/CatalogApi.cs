@@ -33,8 +33,15 @@ public static class CatalogApi
 
     public static async Task<Results<Ok<PaginatedItems<CatalogItem>>, BadRequest<string>>> GetAllItems(
         [AsParameters] PaginationRequest paginationRequest,
-        [AsParameters] CatalogServices services)
+        [AsParameters] CatalogServices services,
+        Azure.Storage.Queues.QueueServiceClient client)
     {
+        var queueClient = client.GetQueueClient("catalogrequests");
+        CancellationToken stoppingToken = new CancellationToken();
+        await queueClient.CreateIfNotExistsAsync(cancellationToken: stoppingToken);
+
+        await queueClient.SendMessageAsync("Catalog Request - All items requested");
+
         var pageSize = paginationRequest.PageSize;
         var pageIndex = paginationRequest.PageIndex;
 
