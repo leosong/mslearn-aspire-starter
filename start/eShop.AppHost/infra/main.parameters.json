@@ -1,0 +1,25 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+      "principalId": {
+        "value": "${AZURE_PRINCIPAL_ID}"
+      },
+      "ergonicedgeiot": {
+        "value": "${AZURE_ERGONICEDGEIOT}"
+      },
+      "postgres_password": {
+        "value": "${AZURE_POSTGRES_PASSWORD}"
+      },
+      "prd_ergonicedge_iot_weu_rg": {
+        "value": "${AZURE_PRD_ERGONICEDGE_IOT_WEU_RG}"
+      },
+      "environmentName": {
+        "value": "${AZURE_ENV_NAME}"
+      },
+      "location": {
+        "value": "${AZURE_LOCATION}"
+      }
+    }
+  }
+  
